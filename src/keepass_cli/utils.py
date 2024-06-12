@@ -7,7 +7,7 @@ from pathlib import Path
 
 import typer
 
-from kpcli.datastructures import Encrypter, KpConfig
+from keepass_cli.datastructures import Encrypter, KpConfig
 
 
 logger = logging.getLogger(__name__)

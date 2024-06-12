@@ -6,7 +6,7 @@ from unittest.mock import call, patch
 import pytest
 from typer.testing import CliRunner
 
-from kpcli.cli import app
+from keepass_cli.cli import app
 
 from .conftest import GROUP_ENTRY_NAMES
 
@@ -114,7 +114,7 @@ def test_get(command, password_expected):
 @pytest.mark.parametrize(
     "command,password_expected",
     [
-        (["get", "entry with no username"], False), 
+        (["get", "entry with no username"], False),
         (["get", "entry with no username", "--show-password"], True)
     ],
 )
@@ -130,7 +130,7 @@ def test_get_entry_with_no_username(command, password_expected):
 @pytest.mark.parametrize(
     "command",
     [
-        (["get", "entry with no password"]), 
+        (["get", "entry with no password"]),
         (["get", "entry with no password", "--show-password"])
     ],
 )
@@ -156,8 +156,8 @@ def test_get_entry_with_no_password(command):
     ],
 )
 @patch.dict(environ, get_env_vars("test_db"))
-@patch("kpcli.cli.typer.prompt")
-@patch("kpcli.cli.signal.alarm")
+@patch("keepass_cli.cli.typer.prompt")
+@patch("keepass_cli.cli.signal.alarm")
 def test_copy_multiple_matches(
     mock_alarm,
     mock_prompt,
@@ -193,9 +193,9 @@ def test_copy_multiple_matches(
     ],
 )
 @patch.dict(environ, get_env_vars("test_db"))
-@patch("kpcli.connector.pyperclip.copy")
-@patch("kpcli.cli.typer.prompt")
-@patch("kpcli.cli.signal.alarm")
+@patch("keepass_cli.connector.pyperclip.copy")
+@patch("keepass_cli.cli.typer.prompt")
+@patch("keepass_cli.cli.signal.alarm")
 def test_copy(mock_alarm, mock_prompt, mock_copy, command, expected_args):
     # mock prompt for confirmation after password copy - this will trigger the clipboard to be cleared
     # also mock the alarm signal so it doesn't pollute other tests
@@ -298,7 +298,7 @@ def test_add_group(temp_db_path):
 
 
 @patch.dict(environ, get_env_vars("temp_db"))
-@patch("kpcli.cli.typer.confirm")
+@patch("keepass_cli.cli.typer.confirm")
 def test_delete_group(mock_confirm, temp_db_path):
     # mock the confirmation
     mock_confirm.return_value = "y"

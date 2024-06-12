@@ -10,10 +10,10 @@ from pykeepass.exceptions import CredentialsError
 import pyperclip
 import typer
 
-from kpcli.comparator import KpDatabaseComparator
-from kpcli.datastructures import CopyOption, EditOption, Encrypter, KpContext
-from kpcli.connector import KpDatabaseConnector
-from kpcli.utils import (
+from keepass_cli.comparator import KpDatabaseComparator
+from keepass_cli.datastructures import CopyOption, EditOption, Encrypter, KpContext
+from keepass_cli.connector import KpDatabaseConnector
+from keepass_cli.utils import (
     echo_banner,
     get_config,
     get_timeout,
@@ -23,7 +23,11 @@ from kpcli.utils import (
 
 logger = logging.getLogger(__name__)
 app = typer.Typer()
-signal.signal(signal.SIGALRM, inputTimeOutHandler)
+
+try:
+    signal.signal(signal.SIGALRM, inputTimeOutHandler)
+except AttributeError:
+    pass
 
 
 ############
@@ -38,9 +42,9 @@ def get_obj_from_ctx(ctx):
 
 
 def validate_group(ctx: typer.Context, group_name: str):
-    """Find the first group matching group_name"""   
+    """Find the first group matching group_name"""
     if ctx.resilient_parsing:
-        return 
+        return
     obj = get_obj_from_ctx(ctx)
     group = ctx_connector(ctx).find_group(group_name)
     if group is None:
@@ -309,7 +313,7 @@ def copy_entry_attribute(
         copy_item(connector, entry, CopyOption.password)
     else:
         copy_item(connector, entry, item)
-    
+
     if str(item) in [CopyOption.password, CopyOption.userpass]:
         # Clear the clipboard after a timeout unless the user indicates they're done with it earlier
         timeout = obj.paste_timeout

@@ -1,27 +1,40 @@
-[tool.poetry]
-name = "kpcli"
+[project]
+name = "keepass-cli"
 version = "0.5.0"
 description = "A simple command line tool to interact with KeePassX databases"
-authors = ["Becky Smith <rebkwok@gmail.com>"]
-license = "GPL-3.0-or-later"
+authors = [{ name = "Becky Smith", email = "rebkwok@gmail.com" }]
+dependencies = [
+    "typer[all]>=0.12.3",
+    "pykeepass>=4.0.7.post1",
+    "pyperclip>=1.8.2",
+    "tableformatter>=0.1.6",
+    "attrs>=23.2.0",
+    "cryptography>=42.0.8",
+    "setuptools>=70.0.0",
+]
 readme = "README.md"
+license = "GPL-3.0-or-later"
+requires-python = ">= 3.8"
 
-[tool.poetry.scripts]
-kpcli = "kpcli.cli:app"
-
-[tool.poetry.dependencies]
-python = ">=3.8"
-typer = {version = ">=0.7.0,<0.10", extras = ["all"]}
-pykeepass = ">=4.0.3, <4.1"
-pyperclip = "^1.8.1"
-tableformatter = "^0.1.6"
-attrs = ">=22.2.0, <23.2"
-cryptography = ">=39.0.1,<41.1"
-
-[tool.poetry.group.dev.dependencies]
-pytest = ">=7.2.2,<7.5"
-pytest-cov = ">=4.0.0,<4.2"
+[project.scripts]
+kpcli = "keepass_cli.cli:app"
 
 [build-system]
-requires = ["poetry-core>=1.6.1"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.2.2",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.4.8",
+    "uv>=0.2.11",
+    "pip>=24.0",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/keepass_cli"]

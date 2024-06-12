@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from kpcli.comparator import KpDatabaseComparator
-from kpcli.datastructures import KpConfig
+from keepass_cli.comparator import KpDatabaseComparator
+from keepass_cli.datastructures import KpConfig
 
 
 def test_compare_no_conflicts(test_db_path):

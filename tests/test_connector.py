@@ -4,8 +4,8 @@ from os import environ
 import pytest
 from unittest.mock import patch
 
-from kpcli.connector import KpDatabaseConnector
-from kpcli.datastructures import KpConfig
+from keepass_cli.connector import KpDatabaseConnector
+from keepass_cli.datastructures import KpConfig
 
 from .conftest import GROUP_ENTRY_NAMES
 
@@ -69,7 +69,7 @@ def test_get_details(test_db_path, show_password, password):
     "attribute,expected",
     [("username", "test@test.com"), ("password", "testpass"), ("url", "gmail.com")],
 )
-@patch("kpcli.connector.pyperclip.copy")
+@patch("keepass_cli.connector.pyperclip.copy")
 def test_copy(mock_copy, test_db_path, attribute, expected):
     db_path = test_db_path("test_db")
     connector = KpDatabaseConnector(KpConfig(filename=db_path, password="test"))

@@ -11,7 +11,7 @@ from cryptography.fernet import Fernet
 from pykeepass.group import Group
 from typing import Optional
 
-from kpcli.connector import KpDatabaseConnector
+from keepass_cli.connector import KpDatabaseConnector
 
 
 @attr.s

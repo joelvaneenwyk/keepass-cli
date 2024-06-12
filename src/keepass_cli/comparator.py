@@ -11,7 +11,7 @@ from pykeepass.exceptions import CredentialsError
 import tableformatter
 from tableformatter import generate_table
 
-from kpcli.datastructures import KpEntry
+from keepass_cli.datastructures import KpEntry
 
 
 class KpDatabaseComparator:
