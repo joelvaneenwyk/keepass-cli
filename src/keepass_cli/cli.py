@@ -182,9 +182,7 @@ def add_group(
 @app.command("rm-group")
 def delete_group(
     ctx: typer.Context,
-    group: str = typer.Argument(
-        ..., help="name (or part thereof) of group to delete"
-    ),
+    group: str = typer.Argument(..., help="name (or part thereof) of group to delete"),
 ):
     """
     Delete group
@@ -204,9 +202,7 @@ def delete_group(
 @app.command("add")
 def add_entry(
     ctx: typer.Context,
-    group: str = typer.Option(
-        "root", prompt="Group name (partial matches allowed)"
-    ),
+    group: str = typer.Option("root", prompt="Group name (partial matches allowed)"),
     title: str = typer.Option(..., prompt=True),
     username: str = typer.Option(..., prompt=True),
     password: str = typer.Option(..., prompt=True, hide_input=True),
@@ -406,6 +402,7 @@ def change_password(
         f"{entry.group.name}/{entry.title}: password updated", fg=typer.colors.GREEN
     )
 
+
 @app.callback()
 def main(
     ctx: typer.Context,
@@ -427,6 +424,7 @@ def main(
     ctx.obj["profile"] = profile
     if "--help" not in sys.argv:
         setup_db(ctx)
+
 
 def setup_db(ctx):
     # Instantiate the relevant database utility object on the Context

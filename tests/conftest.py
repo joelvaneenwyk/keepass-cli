@@ -7,6 +7,7 @@ import pytest
 
 GROUP_ENTRY_NAMES = ["Entry with no password", "Entry with no username", "gmail"]
 
+
 @pytest.fixture
 def temp_db_path():
     test_db = Path(__file__).parent / "fixtures/test_db.kdbx"

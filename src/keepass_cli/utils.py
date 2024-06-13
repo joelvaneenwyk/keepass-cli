@@ -55,7 +55,8 @@ def get_config(profile="default"):
         keyfile=keyfile,
     )
     store_encrypted_password = environ.get(
-        "STORE_ENCRYPTED_PASSWORD", config_from_file.get("STORE_ENCRYPTED_PASSWORD", False),
+        "STORE_ENCRYPTED_PASSWORD",
+        config_from_file.get("STORE_ENCRYPTED_PASSWORD", False),
     )
     store_encrypted_password = str(store_encrypted_password).lower() in ["true", "1"]
     if not db_config.filename.exists():

@@ -115,7 +115,7 @@ def test_get(command, password_expected):
     "command,password_expected",
     [
         (["get", "entry with no username"], False),
-        (["get", "entry with no username", "--show-password"], True)
+        (["get", "entry with no username", "--show-password"], True),
     ],
 )
 @patch.dict(environ, get_env_vars("test_db"))
@@ -131,7 +131,7 @@ def test_get_entry_with_no_username(command, password_expected):
     "command",
     [
         (["get", "entry with no password"]),
-        (["get", "entry with no password", "--show-password"])
+        (["get", "entry with no password", "--show-password"]),
     ],
 )
 @patch.dict(environ, get_env_vars("test_db"))

@@ -138,9 +138,9 @@ class KpDatabaseComparator:
             show_details
         ).items():
             if data is None:
-                conflicting_tables[
-                    comparison_db_filename
-                ] = "Database could not be accessed"
+                conflicting_tables[comparison_db_filename] = (
+                    "Database could not be accessed"
+                )
                 continue
             missing_in_comparison, missing_in_main, conflicts = data
             # Build a table of conflicts

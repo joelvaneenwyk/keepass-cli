@@ -8,6 +8,7 @@ from keepass_cli.datastructures import KpConfig
 
 from .conftest import GROUP_ENTRY_NAMES
 
+
 def test_list_all_groups(test_db_path):
     db_path = test_db_path("test_db")
     connector = KpDatabaseConnector(KpConfig(filename=db_path, password="test"))
