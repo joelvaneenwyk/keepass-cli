@@ -35,7 +35,7 @@ except AttributeError:
 ############
 
 
-def get_obj_from_ctx(ctx):
+def get_obj_from_ctx(ctx: typer.Context) -> object:
     if "obj" not in ctx.obj:
         setup_db(ctx)
     return ctx.obj["obj"]
@@ -82,7 +82,7 @@ def validate_new_group_name(ctx: typer.Context, name):
     base_group = obj.group
     if base_group is None:
         # group may be None if a user specified --name at the command line
-        typer.echo(f"--group is required")
+        typer.echo("--group is required")
         raise typer.Exit()
 
     existing_group = ctx_connector(ctx).find_group(name)
@@ -98,7 +98,7 @@ def validate_selection_number(option_count):
     """
     Validate a selection prompt from the user and ensure it is one of the valid options
     """
-    selection = typer.prompt(f"Select entry number")
+    selection = typer.prompt("Select entry number")
     try:
         selection = int(selection)
     except ValueError:
@@ -259,7 +259,7 @@ def get_or_prompt_single_entry(ctx: typer.Context, name):
         typer.echo("No matching entry found")
         raise typer.Exit(1)
     elif len(entries) > 1:
-        typer.echo(f"Multiple matching entries found: ")
+        typer.echo("Multiple matching entries found: ")
         for i, entry in enumerate(entries, start=1):
             typer.echo(f"{i}: {entry.group.name}/{entry.title}")
 
@@ -305,7 +305,7 @@ def copy_entry_attribute(
         )
         typer.prompt(
             typer.style(
-                f"Press any key to copy password",
+                "Press any key to copy password",
                 fg=typer.colors.MAGENTA,
                 bold=True,
             )
@@ -325,16 +325,16 @@ def copy_entry_attribute(
             signal.alarm(timeout)
             typer.prompt(
                 typer.style(
-                    f"Press any key to clear clipboard and exit",
+                    "Press any key to clear clipboard and exit",
                     fg=typer.colors.MAGENTA,
                     bold=True,
                 )
             )
-            typer.secho(f"Clipboard cleared", fg=typer.colors.GREEN)
+            typer.secho("Clipboard cleared", fg=typer.colors.GREEN)
         except InputTimedOut:
             typer.secho("\nTimed out, clipboard cleared", fg=typer.colors.RED)
         except typer.Abort:  # occurs on Ctrl+C
-            typer.secho(f"\nAborted, clipboard cleared", fg=typer.colors.RED)
+            typer.secho("\nAborted, clipboard cleared", fg=typer.colors.RED)
             raise typer.Exit()
         finally:
             pyperclip.copy("")

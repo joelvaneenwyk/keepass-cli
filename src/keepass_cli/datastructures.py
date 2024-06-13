@@ -168,7 +168,7 @@ class Encrypter:
             Path(environ["HOME"]) / ".kp" / f".salt_{datetime.now().timestamp()}"
         )
         # Generate random salt, hash and save password and store on config obj
-        salt = f"".join(random.choice(string.ascii_letters) for i in range(24))
+        salt = "".join(random.choice(string.ascii_letters) for i in range(24))
         password_with_salt = f"{salt}{config.password}"
         salt_file.write_text(salt)
         fernet = Fernet(self.secret)

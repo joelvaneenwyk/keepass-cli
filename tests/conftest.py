@@ -31,7 +31,7 @@ def mock_config_file():
     temp_config_path.mkdir(parents=True, exist_ok=True)
     temp_config_file = temp_config_path / "config.ini"
 
-    db_path = Path(__file__).parent / f"fixtures/test_db.kdbx"
+    db_path = Path(__file__).parent / "fixtures/test_db.kdbx"
     with open(temp_config_file, "w") as outfile:
         outfile.write(
             f"""

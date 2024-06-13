@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Connect to and interact with a KeePassX database."""
 
-import attr
 from pykeepass import PyKeePass
 import pyperclip
 

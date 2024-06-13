@@ -16,13 +16,13 @@ runner = CliRunner()
 def get_env_vars(db_name, password="test", include_keyfile=False):
     env_vars = {
         # override HOME in case there is a config.ini file already on the host
-        "HOME": str(Path(__file__).parent / f"fixtures"),
+        "HOME": str(Path(__file__).parent / "fixtures"),
         "KEEPASSDB": str(Path(__file__).parent / f"fixtures/{db_name}.kdbx"),
         "KEEPASSDB_PASSWORD": password,
     }
     if include_keyfile:
         env_vars["KEEPASSDB_KEYFILE"] = str(
-            Path(__file__).parent / f"fixtures/test_keyfile.key"
+            Path(__file__).parent / "fixtures/test_keyfile.key"
         )
     return env_vars
 
